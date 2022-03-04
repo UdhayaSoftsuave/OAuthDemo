@@ -55,7 +55,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/validate")
-	private JwtUserDetails validate(@RequestHeader(HttpHeaders.AUTHORIZATION)  AuthToken authToken) {
+	private JwtUserDetails validate(@RequestHeader("auth")String authToken) {
 		return jwtUtils.validateToken(authToken);
 		
 	}
