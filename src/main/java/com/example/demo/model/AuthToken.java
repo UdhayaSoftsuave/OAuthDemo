@@ -1,17 +1,18 @@
 package com.example.demo.model;
 
+import lombok.Builder;
 
-
+@Builder
 public class AuthToken {
 	
-	private String Token ;
+	private String token ;
 
 	public String getToken() {
-		return Token;
+		return token;
 	}
 
 	public void setToken(String token) {
-		Token = token;
+		this.token = token;
 	}
 	
 	

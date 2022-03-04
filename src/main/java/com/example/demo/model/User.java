@@ -1,13 +1,20 @@
 package com.example.demo.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class User {
 	
 	@Id
-	private Long userId ;
+	@GeneratedValue(generator = "uuid2")
+	@GenericGenerator(name = "uuid2",strategy = "uuid2")
+	private String userId ;
 	private String userName;
 	private String email;
 	private String mobile;
@@ -18,7 +25,7 @@ public class User {
 		super();
 	}
 	
-	public User(Long userId, String userName, String email, String mobile, String address, String password) {
+	public User(String userId, String userName, String email, String mobile, String address, String password) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
@@ -28,10 +35,10 @@ public class User {
 		this.password = password;
 	}
 
-	public Long getUserId() {
+	public String getUserId() {
 		return userId;
 	}
-	public void setUserId(Long userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 	public String getUserName() {

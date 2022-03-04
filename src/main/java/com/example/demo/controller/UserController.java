@@ -33,7 +33,9 @@ public class UserController {
 	@PostMapping("/register")
 	@ResponseStatus(HttpStatus.CREATED)
 	private AuthToken register(@RequestBody User user) {
-		return jwtUtils.generateToken(repository.save(user));
+		User user2 =repository.save(user);
+		
+		return jwtUtils.generateToken(user2);
 		
 	}
 	
