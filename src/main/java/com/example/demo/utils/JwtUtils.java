@@ -26,7 +26,6 @@ public class JwtUtils {
 		claims.setExpiration(new Date(System.currentTimeMillis() + (300 *1000)));
 		claims.put("userName", user.getUserName());
 		claims.put("role","customer");
-		System.out.println(secrectKey);
 		return  AuthToken.builder().token( Jwts.builder().setClaims(claims)
 				.signWith(SignatureAlgorithm.HS512,secrectKey)
 				.compact()).
@@ -37,7 +36,6 @@ public class JwtUtils {
 	public JwtUserDetails validateToken(String authToken) {
 		try {
 			Claims claims = Jwts.parser().setSigningKey(secrectKey).parseClaimsJws(authToken).getBody();
-			System.out.println(claims);
 			Date expireDate = claims.getExpiration();
 			if (expireDate.before(new Date(System.currentTimeMillis()))) {
 				throw new RuntimeException("token is expired");
